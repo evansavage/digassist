@@ -1,14 +1,8 @@
-import { Button } from "@material-ui/core"
-import { useEffect, useState } from "react"
-
 import React from 'react';
-import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
 
-
-
 export default function GoogleSignin(props) {
-  const {clientID, setAccessToken, setRefreshToken} = props;
+  const {clientID, accessToken, setAccessToken} = props;
 
   const responseGoogle = (response) => {
     if (response.type !== 'tokenFailed') {
@@ -28,6 +22,7 @@ export default function GoogleSignin(props) {
       buttonText="Login"
       onSuccess={responseGoogle}
       onFailure={responseGoogle}
+      isSignedIn={accessToken !== null ? true : false}
       cookiePolicy={'single_host_origin'}
     />
   )
